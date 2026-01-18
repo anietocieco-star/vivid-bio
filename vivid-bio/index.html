@@ -1,37 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@MrTost</title>
 
-    <title>vivid.bio</title>
-    
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
-      rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<body>
 
-    <link rel="stylesheet" href="style.css" />
-  </head>
+  <div id="enter-screen">
+    <span>click to enter...</span>
+  </div>
 
-  <body>
+  <audio
+    id="player"
+    src="audio.mp3"
+    loop
+    data-title="Waste - Slowed Version"
+    data-artist="KXLLSWXTCH">
+  </audio>
 
-    <audio
-      id="player"
-      src="audio.mp3"
-      autoplay
-      loop
-      data-title="Waste - Slowed Version"
-      data-artist="KXLLSWXTCH"></audio>
+  <div class="volume-control">
+    <input type="range" id="volume-slider" min="0" max="100" step="1" value="100">
+    <i class="fa-solid fa-volume-high"></i>
+  </div>
+
+  <div id="site">
 
     <div class="card">
       <div class="profileimg">
-        <img
-          src="https://cdn.discordapp.com/avatars/1409163599792046262/a_3bdf65486925794914ee080ac1ad0eb8.gif"
-          alt="avatar" />
+        <img src="https://cdn.discordapp.com/avatars/1409163599792046262/a_3bdf65486925794914ee080ac1ad0eb8.gif">
       </div>
 
       <h1>MrTost</h1>
@@ -48,9 +50,9 @@
       <div class="divider"></div>
 
       <div class="socials">
-        <a href="https://www.tiktok.com/@maciejnowakowski52"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="https://www.instagram.com/m.nowakowski64/"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://discord.gg/EGwnFjTpBm"><i class="fa-brands fa-discord"></i></a>
+        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-discord"></i></a>
       </div>
     </div>
 
@@ -62,17 +64,33 @@
       </div>
     </div>
 
-    <script>
-      const player = document.getElementById("player");
+  </div>
 
-      player.play().catch(() => {
-        document.addEventListener("click", () => player.play());
-      });
+  <script>
+    const enter = document.getElementById("enter-screen");
+    const site = document.getElementById("site");
+    const player = document.getElementById("player");
+    const volumeSlider = document.getElementById("volume-slider");
 
-      document.getElementById("song-title").textContent =
-        player.dataset.title;
-      document.getElementById("song-artist").textContent =
-        player.dataset.artist;
-    </script>
-  </body>
+    site.style.display = "none";
+
+    document.getElementById("song-title").textContent = player.dataset.title;
+    document.getElementById("song-artist").textContent = player.dataset.artist;
+
+    enter.addEventListener("click", () => {
+      enter.classList.add("fade");
+      setTimeout(() => {
+        enter.remove();
+        site.style.display = "flex";
+        player.volume = volumeSlider.value / 100;
+        player.play();
+      }, 600);
+    });
+
+    volumeSlider.addEventListener("input", () => {
+      player.volume = volumeSlider.value / 100;
+    });
+  </script>
+
+</body>
 </html>
