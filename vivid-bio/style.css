@@ -212,28 +212,3 @@ h1 {
   h1 { font-size: 2.1rem; }
   .volume-control input[type="range"] { width: 80px; }
 }
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  pointer-events: none;
-  z-index: 9998;
-} 
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(255,255,255,0.1), transparent 70%);
-  pointer-events: none;
-  z-index: 9998;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
-}
