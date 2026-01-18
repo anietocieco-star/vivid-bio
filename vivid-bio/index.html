@@ -64,6 +64,11 @@
 
     <script>
       const player = document.getElementById("player");
+
+      player.play().catch(() => {
+        document.addEventListener("click", () => player.play());
+      });
+
       document.getElementById("song-title").textContent =
         player.dataset.title;
       document.getElementById("song-artist").textContent =
