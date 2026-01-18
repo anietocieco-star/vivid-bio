@@ -1,0 +1,182 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: url(bg.png) center / cover no-repeat fixed;
+  font-family: "Inter", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+      circle at top,
+      rgba(255, 255, 255, 0.06),
+      transparent 60%
+    ),
+    rgba(0, 0, 0, 0.65);
+  z-index: -1;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  padding: 48px 42px;
+  border-radius: 26px;
+  background: linear-gradient(
+    180deg,
+    rgba(32, 32, 32, 0.8),
+    rgba(16, 16, 16, 0.8)
+  );
+  backdrop-filter: blur(18px);
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.75);
+  text-align: center;
+  animation: fadeUp 0.8s ease;
+}
+
+.profileimg img {
+  width: 110px;
+  height: 110px;
+  border-radius: 22px;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: 2.4rem;
+  letter-spacing: 4px;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  opacity: 0.65;
+}
+
+.stack {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  font-size: 1.6rem;
+}
+
+.stack i {
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+.stack i:hover {
+  opacity: 1;
+  transform: translateY(-4px);
+}
+
+.divider {
+  margin: 30px auto;
+  width: 60%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+.socials a {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  transition: 0.3s;
+}
+
+.socials a:hover {
+  background: white;
+  color: black;
+}
+
+.now-playing {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(14px);
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  animation: fadeUp 0.6s ease;
+}
+
+.np-icon {
+  font-size: 20px;
+  opacity: 0.8;
+  animation: pulse 2s infinite;
+}
+
+.np-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.np-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.np-artist {
+  font-size: 0.7rem;
+  opacity: 0.6;
+  margin-top: 4px;
+  text-align: center;
+  display: block;
+}
+
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 38px 26px;
+  }
+
+  h1 {
+    font-size: 2.1rem;
+  }
+}

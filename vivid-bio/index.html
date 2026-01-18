@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>vivid.bio</title>
+    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+
+    <audio
+      id="player"
+      src="audio.mp3"
+      autoplay
+      loop
+      data-title="Waste - Slowed Version"
+      data-artist="KXLLSWXTCH"></audio>
+
+    <div class="card">
+      <div class="profileimg">
+        <img
+          src="https://cdn.discordapp.com/avatars/1409163599792046262/a_3bdf65486925794914ee080ac1ad0eb8.gif"
+          alt="avatar" />
+      </div>
+
+      <h1>MrTost</h1>
+      <p class="subtitle">Web developer & Gambler open</p>
+
+      <div class="stack">
+        <i class="fa-brands fa-html5"></i>
+        <i class="fa-brands fa-css3-alt"></i>
+        <i class="fa-brands fa-js"></i>
+        <i class="fa-brands fa-php"></i>
+        <i class="fa-solid fa-database"></i>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="socials">
+        <a href="https://www.tiktok.com/@maciejnowakowski52"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://www.instagram.com/m.nowakowski64/"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://discord.gg/EGwnFjTpBm"><i class="fa-brands fa-discord"></i></a>
+      </div>
+    </div>
+
+    <div class="now-playing">
+      <div class="np-icon">♫</div>
+      <div class="np-text">
+        <span class="np-title" id="song-title"></span>
+        <span class="np-artist" id="song-artist"></span>
+      </div>
+    </div>
+
+    <script>
+      const player = document.getElementById("player");
+      document.getElementById("song-title").textContent =
+        player.dataset.title;
+      document.getElementById("song-artist").textContent =
+        player.dataset.artist;
+    </script>
+  </body>
+</html>
