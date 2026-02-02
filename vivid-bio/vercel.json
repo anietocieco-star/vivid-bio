@@ -1,4 +1,5 @@
 {
+  "version": 2,
   "functions": {
     "api/verify.ts": {
       "runtime": "edge"
