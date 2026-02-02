@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/verify.ts": {
+      "runtime": "edge"
+    }
+  }
+}
