@@ -1,4 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
+export const config = {
+  runtime: "edge"
+};
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const code = typeof req.query.code === "string" ? req.query.code : null;
@@ -49,3 +52,4 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader("Location", "/");
   res.end();
 }
+
