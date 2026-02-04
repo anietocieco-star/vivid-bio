@@ -1,0 +1,9 @@
+{
+  "name": "presence-server",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "ws": "^8.17.0",
+    "express": "^4.19.2"
+  }
+}
