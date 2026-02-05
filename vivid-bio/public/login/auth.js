@@ -1,0 +1,108 @@
+const SUPABASE_URL = "https://bvodndbkwybvbvyrlsgx.supabase.co";
+const SUPABASE_KEY = "sb_publishable_ZBlIE-DOImuY_i9iphHMxw_T5yDvzy6";
+
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+const password2 = document.getElementById("password2");
+
+const title = document.getElementById("title");
+const msg = document.getElementById("msg");
+
+const loginBtn = document.getElementById("loginBtn");
+const registerBtn = document.getElementById("registerBtn");
+const toggle = document.getElementById("toggle");
+const reset = document.getElementById("reset");
+
+let isRegister = true; // start od rejestracji
+
+function show(text){
+  msg.textContent = text;
+}
+
+function setMode(register){
+  isRegister = register;
+
+  if(register){
+    title.textContent = "Rejestracja";
+    password2.classList.remove("hidden");
+    loginBtn.classList.add("hidden");
+    registerBtn.classList.remove("hidden");
+    toggle.textContent = "Masz konto? Zaloguj się";
+    reset.style.display = "none";
+  }else{
+    title.textContent = "Logowanie";
+    password2.classList.add("hidden");
+    loginBtn.classList.remove("hidden");
+    registerBtn.classList.add("hidden");
+    toggle.textContent = "Nie masz konta? Zarejestruj się";
+    reset.style.display = "block";
+  }
+}
+
+/* start w trybie rejestracji */
+setMode(true);
+
+/* przełączanie trybu */
+toggle.onclick = () => {
+  setMode(!isRegister);
+  msg.textContent = "";
+};
+
+/* LOGOWANIE */
+loginBtn.onclick = async () => {
+  const { error } = await supabase.auth.signInWithPassword({
+    email: email.value,
+    password: password.value
+  });
+
+  if (error) return show(error.message);
+
+  location.href = "/panel";
+};
+
+/* REJESTRACJA */
+registerBtn.onclick = async () => {
+  if(password.value !== password2.value)
+    return show("Hasła nie są takie same");
+
+  const { error } = await supabase.auth.signUp({
+    email: email.value,
+    password: password.value,
+    options: {
+      emailRedirectTo: location.origin + "/login"
+    }
+  });
+
+  if(error) return show(error.message);
+
+  location.href = "/login/check.html";
+};
+
+/* RESET HASŁA */
+reset.onclick = async () => {
+  const { error } = await supabase.auth.resetPasswordForEmail(email.value, {
+    redirectTo: location.origin + "/login"
+  });
+
+  if(error) return show(error.message);
+
+  show("Mail resetujący został wysłany");
+};
+
+/* OAUTH */
+document.getElementById("google").onclick = () => {
+  supabase.auth.signInWithOAuth({ provider: "google" });
+};
+
+document.getElementById("github").onclick = () => {
+  supabase.auth.signInWithOAuth({ provider: "github" });
+};
+
+/* auto redirect jeśli zalogowany — ale nie na ekranie check */
+supabase.auth.onAuthStateChange((event, session) => {
+  if(session && !location.pathname.includes("check.html")){
+    window.location.href = "/panel";
+  }
+});

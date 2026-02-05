@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Profil</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+body{
+  margin:0;
+  font-family:Inter,sans-serif;
+  color:white;
+  text-align:center;
+  background:black;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.container{
+  backdrop-filter:blur(20px);
+  background:rgba(0,0,0,.4);
+  padding:40px;
+  border-radius:20px;
+}
+
+img{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  object-fit:cover;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <img id="avatar">
+  <h1 id="name"></h1>
+  <p id="bio"></p>
+</div>
+
+<script>
+const SUPABASE_URL = "https://bvodndbkwybvbvyrlsgx.supabase.co";
+const SUPABASE_KEY = "sb_publishable_ZBlIE-DOImuY_i9iphHMxw_T5yDvzy6";
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const params = new URLSearchParams(location.search);
+const username = params.get("u");
+
+async function load(){
+  const { data } = await supabase
+    .from("profiles")
+    .select("*")
+    .eq("username", username)
+    .single();
+
+  if(!data){
+    document.body.innerHTML = "<h1>Profil nie istnieje</h1>";
+    return;
+  }
+
+  if(data.is_private){
+    document.body.innerHTML = "<h1>Profil prywatny</h1>";
+    return;
+  }
+
+  if(data.background){
+    document.body.style.background = `url(${data.background}) center/cover no-repeat`;
+  }
+
+  document.getElementById("avatar").src = data.avatar || "";
+  document.getElementById("name").textContent = data.display_name || data.username;
+  document.getElementById("bio").textContent = data.bio || "";
+}
+
+load();
+</script>
+
+</body>
+</html>

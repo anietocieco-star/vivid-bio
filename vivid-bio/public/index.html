@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Wybierz bio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="preload" href="bio/mrtost.html" as="document">
+  <link rel="preload" href="bio/amelcia.html" as="document">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<a href="/login" id="discordLogin" class="discord-login">
+  <img id="discordAvatar" src="" alt="">
+  <span id="discordName">Zarejestruj się</span>
+</a>
+
+
+  <button id="themeToggle" class="theme-toggle" aria-label="Zmień motyw">
+    🌙
+  </button>
+
+  <main class="container fade-in">
+    <header class="hero">
+      <h1 class="title">Wybierz swoje bio</h1>
+    </header>
+
+    <section class="choice">
+      <a href="bio/mrtost.html"
+         class="card animate-card"
+         style="--delay: 0ms">
+        <span class="badge">MrTost</span>
+        <h2>Luźne</h2>
+        <p>
+          Neutralne, casualowe.<br />
+          Bez spiny, bez udawania.
+        </p>
+      </a>
+
+      <a href="bio/amelcia.html"
+         class="card soft animate-card"
+         style="--delay: 0ms">
+        <span class="badge">Amelcia</span>
+        <h2>Soft / aesthetic</h2>
+        <p>
+          Spokojne, delikatne.<br />
+          Klimat &gt; słowa.
+        </p>
+      </a>
+    </section>
+
+    <div class="mobile-hint">
+      tapnij kartę ↑
+    </div>
+
+    <footer class="footer">
+      Made By: MrTost
+    </footer>
+  </main>
+
+  <audio id="clickSound" preload="auto">
+    <source src="click.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const sound = document.getElementById('clickSound');
+
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', e => {
+        e.preventDefault();
+        const url = card.href;
+
+        if (sound) {
+          sound.currentTime = 0;
+          sound.play().catch(() => {});
+        }
+
+        if (navigator.vibrate) {
+          navigator.vibrate(15);
+        }
+
+        document.body.classList.add('fade-out');
+
+        setTimeout(() => {
+          window.location.href = url;
+        }, 420);
+      });
+
+      card.addEventListener('mouseenter', () => {
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = card.href;
+        document.head.appendChild(link);
+      }, { once: true });
+    });
+
+    const toggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'light') {
+      document.body.classList.add('light');
+      toggle.textContent = '☀️';
+    }
+
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      const isLight = document.body.classList.contains('light');
+      toggle.textContent = isLight ? '☀️' : '🌙';
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+  </script>
+
+  <script>
+    const loginBtn = document.getElementById("discordLogin");
+    const avatar = document.getElementById("discordAvatar");
+    const name = document.getElementById("discordName");
+    const user = JSON.parse(localStorage.getItem("discordUser"));
+
+    if (user) {
+      loginBtn.href = "#";
+      name.textContent = user.username;
+
+      avatar.src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
+      avatar.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
