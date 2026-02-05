@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Logowanie</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script defer src="auth.js"></script>
+
+<style>
+body{
+  margin:0;
+  background:#0b1020;
+  color:white;
+  font-family:Inter,sans-serif;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100vh;
+}
+.box{
+  background:rgba(255,255,255,.08);
+  padding:30px;
+  border-radius:16px;
+  width:280px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+button,input{
+  padding:10px;
+  border:none;
+  border-radius:8px;
+}
+button{
+  cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+  <h3>Logowanie</h3>
+
+  <input id="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Hasło">
+
+  <button id="login">Zaloguj</button>
+  <button id="register">Rejestracja</button>
+  <button id="reset">Zapomniałeś hasła</button>
+
+  <hr>
+
+  <button id="google">Google</button>
+  <button id="github">GitHub</button>
+</div>
+
+</body>
+</html>
