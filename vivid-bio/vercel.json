@@ -1,8 +1,5 @@
 {
   "routes": [
-    {
-      "src": "^/([a-zA-Z0-9_-]+)$",
-      "dest": "/bio/mrtost.html"
-    }
+    { "src": "^/([a-zA-Z0-9_-]+)$", "dest": "/bio/$1.html" }
   ]
 }
