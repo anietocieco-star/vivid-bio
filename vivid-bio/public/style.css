@@ -87,6 +87,7 @@ body::before {
   position: relative;
   padding: 42px 32px;
   border-radius: 28px;
+  margin-bottom: 8px;
   background: linear-gradient(
     180deg,
     rgba(255,255,255,0.14),
@@ -291,5 +292,3 @@ body.fade-out {
       0 18px 40px rgba(0,0,0,0.35);
   }
 }
-
-
