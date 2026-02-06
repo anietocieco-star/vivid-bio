@@ -23,47 +23,98 @@ body {
     justify-content: center;
 }
 
-/* HUD */
-.hud{
-  position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-}
-.pfp{
-  width:120px;height:120px;
-  border-radius:50%;
-  box-shadow:
-    0 0 60px var(--aura),
-    0 0 140px var(--aura);
-}
-h1{margin:18px 0 4px;font-size:36px}
-p{margin:0 0 24px;color:#ddd}
-
-/* ICONS */
-.icons{
-  display:flex;
-  gap:26px;
-  font-size:26px;
-}
-
-.icons a{
-  color:#fff;
-  opacity:.85;
-  filter:drop-shadow(0 0 8px rgba(167,139,250,.35));
-  transition:
-    transform .35s cubic-bezier(.22,1,.36,1),
-    opacity .3s ease,
-    filter .35s ease;
+/* --- GAMING HUD PANEL --- */
+.hud {
+  /* Wymuszone centrowanie */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  /* Stylistyka panelu */
+  background: rgba(5, 5, 5, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 242, 255, 0.3);
+  padding: 50px 40px;
+  width: 90%;
+  max-width: 440px;
+  
+  /* Gamingowy kształt (ścięte rogi) */
+  clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 242, 255, 0.1);
 }
 
-.icons a:hover{
-  opacity:1;
-  transform:scale(1.18);
-  filter:drop-shadow(0 0 14px rgba(167,139,250,.65));
+/* Ostre linie dekoracyjne w rogach */
+.hud::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid #00f2ff;
+  clip-path: polygon(0 0, 25% 0, 25% 2px, 2px 25%, 0 25%); /* Lewy górny róg */
+  filter: drop-shadow(0 0 8px #00f2ff);
+}
+
+.pfp {
+  width: 130px;
+  height: 130px;
+  border-radius: 12px; /* Kwadratowy z lekkim zaokrągleniem - bardziej pro */
+  border: 2px solid #00f2ff;
+  object-fit: cover;
+  box-shadow: 0 0 25px rgba(0, 242, 255, 0.5);
+  transition: transform 0.4s ease;
+}
+
+.pfp:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+h1 {
+  margin: 20px 0 5px;
+  font-size: 42px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  color: #fff;
+  text-shadow: 0 0 15px rgba(0, 242, 255, 0.6);
+}
+
+p {
+  margin: 0 0 30px;
+  color: #00f2ff;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  opacity: 0.8;
+}
+
+/* --- ICONS --- */
+.icons {
+  display: flex;
+  gap: 30px;
+  font-size: 28px;
+}
+
+.icons a {
+  color: #fff;
+  opacity: .7;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 5px rgba(0, 242, 255, 0.2));
+}
+
+.icons a:hover {
+  opacity: 1;
+  color: #00f2ff;
+  transform: translateY(-5px);
+  filter: drop-shadow(0 0 15px #00f2ff);
 }
 
 /* --- DISCORD RPC (ŚRODEK GÓRA) --- */
