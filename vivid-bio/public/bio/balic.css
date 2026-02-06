@@ -139,26 +139,36 @@ p {
     z-index: -2;
 }
 
+/* AUDIO GATE - GAMING EDIT */
 #audioGate {
-    position: fixed;
-    inset: 0;
-    background: #000;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: 900;
-    letter-spacing: 10px;
-    color: var(--accent-color);
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9); /* Nieco ciemniejsze dla lepszego kontrastu */
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  cursor: pointer;
+  color: #00f2ff; /* Gamingowy błękit/cyan */
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 5px;
 }
 
 #audioGate span {
-    border: 2px solid var(--accent-color);
-    padding: 20px 40px;
-    box-shadow: var(--glow);
-    animation: pulse 2s infinite;
+  padding: 16px 32px;
+  border-radius: 999px;
+  border: 2px solid #00f2ff; /* Neonowa ramka */
+  box-shadow: 0 0 20px rgba(0, 242, 255, 0.5), inset 0 0 10px rgba(0, 242, 255, 0.2);
+  text-shadow: 0 0 10px rgba(0, 242, 255, 0.8);
+  animation: pulseGaming 2s infinite;
+}
+
+#audioGate.hide {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
 }
 
 @keyframes pulse {
