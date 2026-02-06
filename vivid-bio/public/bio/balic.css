@@ -5,12 +5,14 @@
 }
 
 :root {
-    --accent-color: #00f2ff; /* Gamingowy błękit/cyan */
-    --glow: 0 0 15px rgba(0, 242, 255, 0.5);
+    --accent: #00f2ff; /* Główny neon */
+    --accent-dark: rgba(0, 242, 255, 0.2);
+    --glow: 0 0 20px rgba(0, 242, 255, 0.6);
+    --bg-panel: rgba(5, 5, 5, 0.85);
 }
 
 body {
-    background-color: #020202;
+    background-color: #000;
     color: #fff;
     font-family: 'Satoshi', sans-serif;
     overflow: hidden;
@@ -20,154 +22,185 @@ body {
     justify-content: center;
 }
 
-/* --- GAMING HUD MAIN BOX --- */
+/* --- GAMING HUD PANEL --- */
 .hud {
-    background: rgba(5, 5, 5, 0.7);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 2px solid var(--accent-color); /* Neonowa ramka */
-    padding: 3rem;
-    border-radius: 12px; /* Bardziej kanciaste, gamingowe */
+    background: var(--bg-panel);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--accent-dark);
+    padding: 4rem 3rem;
+    border-radius: 5px;
     text-align: center;
-    box-shadow: var(--glow), inset 0 0 20px rgba(0, 242, 255, 0.1);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 1), inset 0 0 30px var(--accent-dark);
     max-width: 450px;
     width: 90%;
-    animation: fadeIn 1s ease-out;
-    clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%); /* Gamingowe ścięcia rogów */
+    position: relative;
+    animation: fadeIn 0.8s ease-out forwards;
+    /* Gamingowe ścięcie góra-lewo i dół-prawo */
+    clip-path: polygon(15% 0%, 100% 0, 100% 85%, 85% 100%, 0 100%, 0% 15%);
+}
+
+/* Dekoracyjne linie w rogach */
+.hud::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 2px solid var(--accent);
+    clip-path: polygon(15% 0, 30% 0, 30% 2px, 15% 2px, 2px 15%, 2px 30%, 0 30%, 0 15%);
+    filter: drop-shadow(var(--glow));
 }
 
 .pfp {
-    width: 130px;
-    height: 130px;
-    border-radius: 15%; /* Kwadratowy z lekki zaokrągleniem */
-    border: 3px solid var(--accent-color);
-    margin-bottom: 1.5rem;
+    width: 140px;
+    height: 140px;
+    border-radius: 10px;
+    border: 2px solid var(--accent);
+    margin-bottom: 2rem;
     box-shadow: var(--glow);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    object-fit: cover;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .pfp:hover {
-    transform: scale(1.1);
-    filter: hue-rotate(90deg); /* Zmienia kolor przy najechaniu */
+    transform: scale(1.1) rotate(2deg);
+    filter: saturate(1.5) brightness(1.2);
 }
 
 h1 {
-    font-size: 2.8rem;
+    font-size: 3rem;
     font-weight: 900;
-    letter-spacing: -2px;
+    letter-spacing: -1px;
     text-transform: uppercase;
-    color: #fff;
-    text-shadow: 2px 2px 0px var(--accent-color);
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to bottom, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
 }
 
 p {
-    color: var(--accent-color);
-    font-size: 0.75rem;
+    color: var(--accent);
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 5px;
-    margin-bottom: 2rem;
-    font-weight: 800;
+    letter-spacing: 6px;
+    margin-bottom: 2.5rem;
+    font-weight: 700;
+    text-shadow: var(--glow);
 }
 
 /* --- ICONS --- */
+.icons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
 .icons a {
     color: #fff;
-    font-size: 1.6rem;
-    transition: 0.3s;
-    opacity: 0.8;
-    filter: drop-shadow(0 0 5px var(--accent-color));
+    font-size: 1.8rem;
+    transition: 0.3s ease;
+    filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));
 }
 
 .icons a:hover {
-    opacity: 1;
-    transform: scale(1.2);
-    color: var(--accent-color);
+    color: var(--accent);
+    transform: translateY(-5px);
+    filter: drop-shadow(var(--glow));
 }
 
 /* --- DISCORD RPC (ŚRODEK GÓRA) --- */
 .rpc {
     position: fixed;
-    top: 30px;
+    top: 20px;
     left: 50%;
-    transform: translateX(-50%); /* Idealny środek */
-    background: rgba(0, 0, 0, 0.8);
-    padding: 10px 20px;
-    border-radius: 0 0 15px 15px;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    padding: 12px 25px;
+    border: 1px solid var(--accent);
+    border-radius: 0 0 10px 10px;
     display: flex;
     align-items: center;
     gap: 15px;
-    border: 1px solid var(--accent-color);
-    border-top: none;
     box-shadow: var(--glow);
+    z-index: 100;
 }
 
 /* --- AUDIO HUD (LEWY GÓRNY RÓG) --- */
 .audio-hud {
     position: fixed;
-    top: 30px; /* Zmiana z bottom na top */
-    left: 30px; /* Zmiana z right na left */
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 5px;
+    border-left: 3px solid var(--accent);
     display: flex;
     align-items: center;
-    gap: 12px;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 12px 18px;
-    border-radius: 8px;
-    border-left: 4px solid var(--accent-color);
-    box-shadow: 10px 10px 20px rgba(0,0,0,0.5);
+    gap: 15px;
+    z-index: 100;
 }
 
 #volume {
-    accent-color: var(--accent-color);
-    cursor: crosshair;
+    accent-color: var(--accent);
+    cursor: pointer;
+    width: 80px;
 }
 
-/* --- TŁO I EFEKTY --- */
+/* --- AUDIO GATE (TEN CO DZIAŁAŁ) --- */
+#audioGate {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+#audioGate span {
+    padding: 20px 50px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 8px;
+    box-shadow: var(--glow), inset 0 0 15px var(--accent-dark);
+    animation: pulseGaming 2s infinite;
+}
+
+#audioGate.hide {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+}
+
+/* --- TŁO --- */
 .bg-video {
     position: fixed;
     inset: 0;
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     object-fit: cover;
-    filter: brightness(.3) contrast(1.2);
+    filter: brightness(0.25) contrast(1.3);
     z-index: -5;
+    transform: scale(1.1);
 }
 
 .vignette {
     position: fixed;
     inset: 0;
-    background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.9) 100%);
+    background: radial-gradient(circle, transparent 20%, #000 100%);
     z-index: -2;
 }
 
-/* AUDIO GATE */
-#audioGate{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.85);
-  backdrop-filter:blur(10px);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:999;
-  cursor:pointer;
-}
-#audioGate span{
-  padding:14px 28px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.3);
-  box-shadow:0 0 50px var(--aura);
-  letter-spacing:2px;
-}
-#audioGate.hide{opacity:0;pointer-events:none}
-
-@keyframes pulse {
+@keyframes pulseGaming {
     0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.05); opacity: 0.7; }
+    50% { transform: scale(1.05); opacity: 0.6; box-shadow: 0 0 40px var(--accent); }
     100% { transform: scale(1); opacity: 1; }
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
-
