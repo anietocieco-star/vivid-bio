@@ -78,7 +78,7 @@ body::before {
 .choice {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 18px;
 }
 
 .card {
@@ -87,7 +87,7 @@ body::before {
   position: relative;
   padding: 42px 32px;
   border-radius: 28px;
-  margin-bottom: 28px;
+  margin-bottom: 18px;
   background: linear-gradient(
     180deg,
     rgba(255,255,255,0.14),
@@ -158,6 +158,7 @@ body::before {
 }
 
 .mobile-hint {
+  position: fixed;
   margin-top: 36px;
   text-align: center;
   font-size: 0.85rem;
@@ -165,10 +166,15 @@ body::before {
 }
 
 .footer {
-  margin-top: 72px;
+  position: fixed;
+  bottom: -180px;
+  left: 50%;
+  transform: translateX(-50%);
+  
   text-align: center;
   font-size: 0.85rem;
   color: var(--text-sub);
+  z-index: 10;
 }
 
 .theme-toggle {
@@ -277,7 +283,7 @@ body.fade-out {
   .choice {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 36px;
+    gap: 18px;
   }
 
   .mobile-hint {
@@ -292,5 +298,3 @@ body.fade-out {
       0 18px 40px rgba(0,0,0,0.35);
   }
 }
-
-
