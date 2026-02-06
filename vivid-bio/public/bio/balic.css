@@ -139,37 +139,26 @@ p {
     z-index: -2;
 }
 
-/* AUDIO GATE - GAMING EDIT */
-#audioGate {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.9); /* Nieco ciemniejsze dla lepszego kontrastu */
-  backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-  cursor: pointer;
-  color: #00f2ff; /* Gamingowy błękit/cyan */
-  text-transform: uppercase;
-  font-weight: 900;
-  letter-spacing: 5px;
+/* AUDIO GATE */
+#audioGate{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  backdrop-filter:blur(10px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+  cursor:pointer;
 }
-
-#audioGate span {
-  padding: 16px 32px;
-  border-radius: 999px;
-  border: 2px solid #00f2ff; /* Neonowa ramka */
-  box-shadow: 0 0 20px rgba(0, 242, 255, 0.5), inset 0 0 10px rgba(0, 242, 255, 0.2);
-  text-shadow: 0 0 10px rgba(0, 242, 255, 0.8);
-  animation: pulseGaming 2s infinite;
+#audioGate span{
+  padding:14px 28px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.3);
+  box-shadow:0 0 50px var(--aura);
+  letter-spacing:2px;
 }
-
-#audioGate.hide {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s ease;
-}
+#audioGate.hide{opacity:0;pointer-events:none}
 
 @keyframes pulse {
     0% { transform: scale(1); opacity: 1; }
@@ -181,3 +170,4 @@ p {
     from { opacity: 0; transform: scale(0.9); }
     to { opacity: 1; transform: scale(1); }
 }
+
