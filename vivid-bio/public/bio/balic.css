@@ -160,18 +160,46 @@ p {
     box-shadow: 0 0 8px #43b581;
 }
 
-#audioGate {
-    position: fixed;
-    inset: 0;
-    background: #050505;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 900;
-    letter-spacing: 10px;
-    cursor: pointer;
-    transition: opacity 0.5s ease, visibility 0.5s;
+/* AUDIO GATE */
+#audioGate{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  backdrop-filter:blur(10px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+  cursor:pointer;
+}
+#audioGate span{
+  padding:14px 28px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.3);
+  box-shadow:0 0 50px var(--aura);
+  letter-spacing:2px;
+}
+#audioGate.hide{opacity:0;pointer-events:none}
+
+/* VIDEO */
+.bg-video{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(.55) contrast(1.1) saturate(1.3);
+  transform:scale(1.06);
+  z-index:-5;
+  pointer-events:none;
+}
+
+/* FX */
+#embers{position:fixed;inset:0;z-index:-3}
+.vignette{
+  position:fixed;inset:0;
+  background:radial-gradient(circle,transparent 40%,rgba(0,0,0,.8));
+  z-index:-2;
 }
 
 .audio-hud {
