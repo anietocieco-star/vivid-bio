@@ -17,6 +17,7 @@ body {
     font-family: 'Satoshi', sans-serif;
     overflow: hidden;
     height: 100vh;
+    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,7 +37,6 @@ body {
     width: 90%;
     position: relative;
     animation: fadeIn 0.8s ease-out forwards;
-    /* Gamingowe ścięcie góra-lewo i dół-prawo */
     clip-path: polygon(15% 0%, 100% 0, 100% 85%, 85% 100%, 0 100%, 0% 15%);
 }
 
