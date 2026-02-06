@@ -157,6 +157,10 @@ body::before {
   line-height: 1.6;
 }
 
+.card[href*="balic"] {
+  --accent: #ff4d4d; /* Twój czerwony */
+}
+
 .mobile-hint {
   position: fixed;
   margin-top: 36px;
