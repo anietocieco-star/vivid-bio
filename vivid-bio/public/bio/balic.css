@@ -1,0 +1,214 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --accent: #00f2ff; /* Główny neon */
+    --accent-dark: rgba(0, 242, 255, 0.2);
+    --glow: 0 0 20px rgba(0, 242, 255, 0.6);
+    --bg-panel: rgba(5, 5, 5, 0.85);
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Satoshi', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- GAMING HUD PANEL --- */
+.hud {
+  /* Wymuszone centrowanie */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  /* Stylistyka panelu */
+  background: rgba(5, 5, 5, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 242, 255, 0.3);
+  padding: 50px 40px;
+  width: 90%;
+  max-width: 440px;
+  
+  /* Gamingowy kształt (ścięte rogi) */
+  clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 242, 255, 0.1);
+}
+
+/* Ostre linie dekoracyjne w rogach */
+.hud::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid #00f2ff;
+  clip-path: polygon(0 0, 25% 0, 25% 2px, 2px 25%, 0 25%); /* Lewy górny róg */
+  filter: drop-shadow(0 0 8px #00f2ff);
+}
+
+.pfp {
+  width: 130px;
+  height: 130px;
+  border-radius: 12px; /* Kwadratowy z lekkim zaokrągleniem - bardziej pro */
+  border: 2px solid #00f2ff;
+  object-fit: cover;
+  box-shadow: 0 0 25px rgba(0, 242, 255, 0.5);
+  transition: transform 0.4s ease;
+}
+
+.pfp:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+h1 {
+  margin: 20px 0 5px;
+  font-size: 42px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  color: #fff;
+  text-shadow: 0 0 15px rgba(0, 242, 255, 0.6);
+}
+
+p {
+  margin: 0 0 30px;
+  color: #00f2ff;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  opacity: 0.8;
+}
+
+/* --- ICONS --- */
+.icons {
+  display: flex;
+  gap: 30px;
+  font-size: 28px;
+}
+
+.icons a {
+  color: #fff;
+  opacity: .7;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 5px rgba(0, 242, 255, 0.2));
+}
+
+.icons a:hover {
+  opacity: 1;
+  color: #00f2ff;
+  transform: translateY(-5px);
+  filter: drop-shadow(0 0 15px #00f2ff);
+}
+
+/* --- DISCORD RPC (ŚRODEK GÓRA) --- */
+.rpc {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    padding: 12px 25px;
+    border: 1px solid var(--accent);
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: var(--glow);
+    z-index: 100;
+}
+
+/* --- AUDIO HUD (LEWY GÓRNY RÓG) --- */
+.audio-hud {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 5px;
+    border-left: 3px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 100;
+}
+
+#volume {
+    accent-color: var(--accent);
+    cursor: pointer;
+    width: 80px;
+}
+
+/* --- AUDIO GATE (TEN CO DZIAŁAŁ) --- */
+#audioGate {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+#audioGate span {
+    padding: 20px 50px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 8px;
+    box-shadow: var(--glow), inset 0 0 15px var(--accent-dark);
+    animation: pulseGaming 2s infinite;
+}
+
+#audioGate.hide {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+}
+
+/* --- TŁO --- */
+.bg-video {
+    position: fixed;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: brightness(0.25) contrast(1.3);
+    z-index: -5;
+    transform: scale(1.1);
+}
+
+.vignette {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, transparent 20%, #000 100%);
+    z-index: -2;
+}
+
+@keyframes pulseGaming {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.6; box-shadow: 0 0 40px var(--accent); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}

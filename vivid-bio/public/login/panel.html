@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Panel bio</title>
+
+<link rel="stylesheet" href="panel.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script defer src="panel.js"></script>
+</head>
+<body>
+
+<div class="layout">
+
+  <div class="editor">
+    <h2>Edytuj bio</h2>
+
+    <input id="username" placeholder="username">
+    <input id="display_name" placeholder="nazwa wyświetlana">
+    <textarea id="bio" placeholder="opis"></textarea>
+
+    <label>Avatar</label>
+    <input type="file" id="avatar">
+
+    <label>Tło</label>
+    <input type="file" id="background">
+
+    <label>
+      <input type="checkbox" id="private">
+      Profil prywatny
+    </label>
+
+    <button id="save">Zapisz</button>
+    <button id="logout" class="ghost">Wyloguj</button>
+  </div>
+
+  <div class="preview">
+    <iframe id="previewFrame"></iframe>
+  </div>
+
+</div>
+
+</body>
+</html>
