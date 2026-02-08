@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", () => {
+
 const SUPABASE_URL = "https://bvodndbkwybvbvyrlsgx.supabase.co";
 const SUPABASE_KEY = "sb_publishable_ZBlIE-DOImuY_i9iphHMxw_T5yDvzy6";
 
@@ -88,7 +90,6 @@ registerBtn.onclick = async () => {
     return show(error.message);
   }
 
-  /* jeśli mail confirmation włączony */
   if(!data.session){
     location.href = "/login/check.html";
   }else{
@@ -122,4 +123,6 @@ supabase.auth.getSession().then(({ data })=>{
   if(data.session){
     location.href = "/panel";
   }
+});
+
 });
