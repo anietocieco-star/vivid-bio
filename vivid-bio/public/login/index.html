@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rejestracja</title>
+
+<link rel="stylesheet" href="/login/auth.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script defer src="/login/auth.js"></script>
+</head>
+<body>
+
+<div class="auth">
+  <div class="box">
+
+    <h2 id="title">Rejestracja</h2>
+
+    <div id="msg" class="msg"></div>
+
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Hasło">
+    <input id="password2" type="password" placeholder="Powtórz hasło">
+
+    <input id="otp" placeholder="Kod z emaila" class="hidden">
+
+    <button id="mainBtn">Utwórz konto</button>
+
+    <button id="verifyBtn" class="hidden">
+      Zweryfikuj kod
+    </button>
+
+    <button id="toggle" class="ghost">
+      Masz konto? Zaloguj się
+    </button>
+
+    <button id="reset" class="ghost hidden">
+      Zresetuj hasło
+    </button>
+
+    <div class="divider">lub</div>
+
+    <button id="google" class="oauth google">
+      Zaloguj przez Google
+    </button>
+
+    <button id="github" class="oauth github">
+      Zaloguj przez GitHub
+    </button>
+
+  </div>
+</div>
+
+</body>
+</html>
