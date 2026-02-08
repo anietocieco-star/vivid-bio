@@ -1,7 +1,0 @@
-{
-  "routes": [
-    { "src": "^/login$", "dest": "/login/index.html" },
-    { "src": "^/panel$", "dest": "/login/panel.html" },
-    { "src": "^/([a-zA-Z0-9_-]+)$", "dest": "/bio/profile.html?u=$1" }
-  ]
-}
